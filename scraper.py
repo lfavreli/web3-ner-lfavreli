@@ -1,5 +1,6 @@
-import justext as just
 import os
+import justext as just
+
 from requests import get as get_url
 
 
@@ -56,3 +57,4 @@ def db_scrap(res_db, url_base, dist):
                 file.close()
         except:
             continue
+
