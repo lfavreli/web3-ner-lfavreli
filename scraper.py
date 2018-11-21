@@ -1,7 +1,10 @@
 import os
 import justext as just
+from bs4 import BeautifulSoup as beautiful_soup
 
 from requests import get as get_url
+
+
 
 
 def db_scrap(res_db, url_base, dist):
@@ -58,3 +61,36 @@ def db_scrap(res_db, url_base, dist):
         except:
             continue
 
+if __name__ == '__main__':
+
+    db_page = get_url('https://www.imdb.com/title/tt0109830/')
+    # get content of page
+    page_content = db_page.content
+    # close file
+    db_page.close()
+    result = []
+    soup = beautiful_soup(page_content, 'html.parser')
+
+
+    rating = soup.find("div", {"class": "title_block"}).find("span", {"itemprop": "ratingValue"}).get_text()
+    time = soup.find("div", {"class": "title_block"}).find("time").get_text().replace(" ","").replace("\n","")
+    title = soup.find("div", {"class": "title_block"}).find("h1").get_text()
+    link = [c.get_text() for c in soup.find("div", {"class": "title_block"}).findAll("a")[2:]]
+    genre = ','.join(link[:-1]).replace("\n","").replace(" ","")
+    date = link[-1].replace("\n","")
+    director = soup.find("div", {"class": "plot_summary"}).findAll("a")[0].get_text()
+    actor = []
+    for tr in soup.find("table", {"class": "cast_list"}).findAll("tr")[1:]:
+        actor.append(tr.findChildren('td')[1].find("a").text[1:])
+
+
+    result.append(title)
+    result.append(time)
+    result.append(rating)
+    result.append(genre)
+    result.append(date)
+    result.append(director)
+    result.append(",".join(actor).replace("\n",""))
+    #result.append(actor)
+    print("\n".join(result))
+   # print( soup.find("div", {"class": "title_block"}))
