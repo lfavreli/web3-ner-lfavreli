@@ -1,10 +1,8 @@
 import os
 import justext as just
+
 from bs4 import BeautifulSoup as beautiful_soup
-
 from requests import get as get_url
-
-
 
 
 def db_scrap(res_db, url_base, dist):
@@ -49,16 +47,43 @@ def db_scrap(res_db, url_base, dist):
             result = []
             soup = beautiful_soup(page_content, 'html.parser')
 
-            rating = soup.find("div", {"class": "title_block"}).find("span", {"itemprop": "ratingValue"}).get_text()
-            time = soup.find("div", {"class": "title_block"}).find("time").get_text().replace(" ", "").replace("\n", "")
-            title = soup.find("div", {"class": "title_block"}).find("h1").get_text()
+            # Get rating value
+            rating_elm = soup.find("div", {"class": "title_block"}).find("span", {"itemprop": "ratingValue"}) 
+            rating = rating_elm.get_text() if rating_elm is not None else None
+
+            # Get duration value
+            time_elm = soup.find("div", {"class": "title_block"}).find("time")
+            time = time_elm.get_text().replace(" ", "").replace("\n", "") if time_elm is not None else None
+
+            # Get title value
+            title_elm = soup.find("div", {"class": "title_block"}).find("h1")
+            title = title_elm.get_text() if title_elm is not None else None 
+
+            # Get director value
+            director_elm = soup.find("div", {"class": "plot_summary"}).findAll("a")[0]
+            director = director_elm.get_text() if director_elm is not None else None 
+
             link = [c.get_text() for c in soup.find("div", {"class": "title_block"}).findAll("a")[2:]]
-            genre = ','.join(link[:-1]).replace("\n", "").replace(" ", "")
-            date = link[-1].replace("\n", "")
-            director = soup.find("div", {"class": "plot_summary"}).findAll("a")[0].get_text()
+            
+            # Get genre and date values
+            if not link:
+                genre = date = []
+                date = []
+            else:
+                genre = ','.join(link[:-1]).replace("\n", "").replace(" ", "")
+                date = link[-1].replace("\n", "") if not link else None
+
+            print('************')
+            print(rating)
+
+            # Get actors
             actor = []
-            for tr in soup.find("table", {"class": "cast_list"}).findAll("tr")[1:]:
-                actor.append(tr.findChildren('td')[1].find("a").text[1:])
+            actor_elm = soup.find("table", {"class": "cast_list"})
+            if actor_elm is not None:
+                for tr in actor_elm.findAll("tr")[1:]:
+                    children_elm = tr.findChildren('td')
+                    if len(children_elm) >= 2:
+                        actor.append(children_elm[1].find("a").text[1:])
 
             result.append(title)
             result.append(time)
@@ -104,3 +129,4 @@ def db_scrap(res_db, url_base, dist):
                     file.close()
             except:
                 continue
+
