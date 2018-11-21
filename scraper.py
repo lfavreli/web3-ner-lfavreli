@@ -49,19 +49,19 @@ def db_scrap(res_db, url_base, dist):
 
             # Get rating value
             rating_elm = soup.find("div", {"class": "title_block"}).find("span", {"itemprop": "ratingValue"}) 
-            rating = rating_elm.get_text() if rating_elm is not None else None
+            rating = rating_elm.get_text() if rating_elm is not None else ""
 
             # Get duration value
             time_elm = soup.find("div", {"class": "title_block"}).find("time")
-            time = time_elm.get_text().replace(" ", "").replace("\n", "") if time_elm is not None else None
+            time = time_elm.get_text().replace(" ", "").replace("\n", "") if time_elm is not None else ""
 
             # Get title value
             title_elm = soup.find("div", {"class": "title_block"}).find("h1")
-            title = title_elm.get_text() if title_elm is not None else None 
+            title = title_elm.get_text() if title_elm is not None else "" 
 
             # Get director value
             director_elm = soup.find("div", {"class": "plot_summary"}).findAll("a")[0]
-            director = director_elm.get_text() if director_elm is not None else None 
+            director = director_elm.get_text() if director_elm is not None else "" 
 
             link = [c.get_text() for c in soup.find("div", {"class": "title_block"}).findAll("a")[2:]]
             
@@ -71,7 +71,7 @@ def db_scrap(res_db, url_base, dist):
                 date = []
             else:
                 genre = ','.join(link[:-1]).replace("\n", "").replace(" ", "")
-                date = link[-1].replace("\n", "") if not link else None
+                date = link[-1].replace("\n", "") if not link else ""
 
             # Get actors
             actor = []
@@ -98,7 +98,7 @@ def db_scrap(res_db, url_base, dist):
                     # close file
                     file.close()
             except:
-                continue
+                continue         
 
             # get page whit url base plus reference + '/reviews
             db_page = get_url(url_base+reference+'/reviews')

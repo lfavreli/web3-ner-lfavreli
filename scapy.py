@@ -23,6 +23,8 @@ def build_movie_from_description(description):
 def get_named_entities():
     nlp = spacy.load('en_core_web_sm')
 
+    actors = []
+    print('Compute intersection between actors in description and reviews...')
     for path in Path("./dist").glob('*'):
         dir = str(path)
         description = open(dir + '\\description', encoding='utf-8').read()
@@ -32,9 +34,12 @@ def get_named_entities():
 
         doc = nlp(reviews)
         ne_type = [el.text for el in doc.ents if el.label_ == 'PERSON']
-        intersect = set(movie['actor']) & set(ne_type)
+        intersect = list(set(movie['actor']) & set(ne_type))
+        actors += intersect
+        print('Intersection for ' + movie['title'] + ' : ')
         print(intersect)
+
+    print('All done !')
+ 
+    print(Counter(actors).most_common())
     
-    
-    # Counter(items).most_common(3)
-    # pprint(Counter(labels))
