@@ -73,9 +73,6 @@ def db_scrap(res_db, url_base, dist):
                 genre = ','.join(link[:-1]).replace("\n", "").replace(" ", "")
                 date = link[-1].replace("\n", "") if not link else None
 
-            print('************')
-            print(rating)
-
             # Get actors
             actor = []
             actor_elm = soup.find("table", {"class": "cast_list"})
@@ -129,4 +126,3 @@ def db_scrap(res_db, url_base, dist):
                     file.close()
             except:
                 continue
-
