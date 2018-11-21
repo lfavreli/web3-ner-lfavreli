@@ -1,36 +1,38 @@
-# Named Entity Scraper for Movie Ontology
+# Script - Peuplement de l'ontologie "Films"
 
-A Python script for scraping and recognize Named Entity on IMDb.
+Script Python facilitant le peuplement de l'ontologie "Film".
 
-## Requirements
+## Requis
 
 * Python ≥ 3.5
-* NLTK ≥ 3.x
+* BeautifulSoup ≥ 4.6.x
 * SpaCy ≥ 2.0.x
-
-### Additional commands
-
-Open a Python Shell and download NLTK useful package:
-
-```python
-    import nltk
-    nltk.download('punkt')
-    nltk.download('averaged_perceptron_tagger')
-    nltk.download('maxent_ne_chunker')
-    nltk.download('words')
-```
-
-Then, on your terminal, download best-matching version of specific model:
+* Téléchargement du modèle :
 
 ```console
     python -m spacy download en_core_web_sm
 ```
 
-## Usage
+## Mise en place
 
-TODO:
+L'objectif de ce script est de faciliter le peuplement de notre ontologie de films.
 
-## Contributors
+Rappel des principales classes :
+
+* dbo:Person > Actor, Director, Male, Female
+* Genre > Action, Comedy, Fantastic
+* Movie > Original, Remake
+* MovieRating [ 1 .. 5 ]
+
+Détaillons son fonctionnement interne :
+
+1. 
+
+## Évolution envisageable
+
+1. Pour la classification par sexe, nous pourrions utiliser des dictionnaires afin des distinguer le genre des acteurs et des producteurs. Néansmoins, il aurait des ambigûités pour les prénoms mixtes.
+
+## Étudiants
 
 * Loïc FAVRELIERE
 * Nicola FOISSAC
