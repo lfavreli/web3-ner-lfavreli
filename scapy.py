@@ -27,8 +27,8 @@ def get_named_entities():
     print('Compute intersection between actors in description and reviews...')
     for path in Path("./dist").glob('*'):
         dir = str(path)
-        description = open(dir + '\\description', encoding='utf-8').read()
-        reviews = open(dir + '\\reviews', encoding='utf-8').read()
+        description = open(dir + '/description', encoding='utf-8').read()
+        reviews = open(dir + '/reviews', encoding='utf-8').read()
         
         movie = build_movie_from_description(description)
 
