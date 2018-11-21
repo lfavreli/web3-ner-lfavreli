@@ -12,8 +12,8 @@ setup(
     install_requires=
     [
         'jusText==2.2.0',
-        'nltk==3.4',
-        'spacy==2.0.16'
+        'spacy==2.0.16',
+        'beautifulsoup4==4.6.3'
 
     ]
 
