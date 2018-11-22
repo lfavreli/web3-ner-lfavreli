@@ -5,15 +5,15 @@ from bs4 import BeautifulSoup as beautiful_soup
 from requests import get as get_url
 
 
-def db_scrap(res_db, url_base, dist):
-    """
+"""
     This function a make corpus of text by combining url_base whit each element inside res_bd file
     :param res_db: DB file whit this form "1 \n 2 \n 3 \n"
     :param url_base: Base of url like this from "www.foo/bar/"
     :param dist: Dist director to save each file generated
     :return: None
-    """
-
+"""
+def db_scrap(res_db, url_base, dist):
+    
     # List of references
     references = []
 

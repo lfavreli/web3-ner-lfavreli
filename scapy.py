@@ -19,7 +19,6 @@ def build_movie_from_description(description):
     return movie
 
 
-
 def get_named_entities():
     nlp = spacy.load('en_core_web_sm')
 
@@ -42,4 +41,3 @@ def get_named_entities():
     print('All done !')
  
     print(Counter(actors).most_common())
-    
