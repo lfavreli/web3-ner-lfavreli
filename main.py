@@ -1,7 +1,7 @@
 import sys
 
 from scraper import db_scrap
-from scapy import generate_knowledge
+from knowledge import generate_knowledge
 
 def main():
     print('Début de la constitution du jeu de données [./dist]...')
