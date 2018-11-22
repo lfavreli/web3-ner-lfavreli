@@ -44,9 +44,21 @@ Détaillons son fonctionnement interne :
 
 9. Pour chaque film, récupération de ses critiques `tt0092067/reviews` puis extraction à l'aide de SpaCy des entités nommées de types `PERSON`.
 
-10. Calcul l'intersection entre les acteurs présents dans la fiche fiche de description et les acteurs cités dans les critiques. Nous récupérons ainsi les acteurs les plus controversés. Ce sont ceux qui seront importants d'importer dans notre ontologie.
+10. Calcul l'intersection entre les acteurs présents dans la fiche fiche de description et les acteurs cités dans les critiques. Nous récupérons ainsi les acteurs les plus controversés (positivement ou négativement). Ce sont ceux qui seront indispensables d'importer dans notre ontologie.
 
-À noter que les sorties seront plus pertinentes avec un nombre de films et de critiques par film important. Nous pourrions ainsi ressortir les acteurs les plus plébiscités ou critiquer.
+## Sorties (outputs)
+
+* movies.json
+
+Liste des objets `Movie` avec l'ensemble des caractéristiques récupérées où `controversial_actors` correspondant à l'intersection des acteurs récupérés dans la fiche descriptive et les acteurs cités dans les critiques.
+
+* actor_most_common.json
+
+Liste, triée, des acteurs apparaissant le plus de fois dans toutes les critiques.
+
+---
+
+Les sorties seront plus pertinentes avec un nombre de films et de critiques par film important. Nous pourrions ainsi ressortir les acteurs les plus plébiscités ou critiquer.
 
 ## Évolutions possibles
 
