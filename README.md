@@ -1,6 +1,6 @@
 # Script - Peuplement de l'ontologie "Films"
 
-Script Python facilitant le peuplement de l'ontologie de notre ontologie de Film.
+Script Python facilitant le peuplement de notre ontologie de Film.
 
 ## Prérequis
 
