@@ -5,6 +5,7 @@ Script Python facilitant le peuplement de l'ontologie de notre ontologie de Film
 ## Prérequis
 
 * Python ≥ 3.5
+* JusText ≥ 2.2.x
 * BeautifulSoup ≥ 4.6.x
 * SpaCy ≥ 2.0.x
 * Téléchargement du modèle :
@@ -24,7 +25,7 @@ Rappel des principales classes :
 * Movie > Original, Remake
 * MovieRating [ 1 .. 5 ]
 
-Détaillons son fonctionnement interne :
+Fonctionnement interne :
 
 1. Récupération des identifiants (IMDb) des films présents dans le fichier `res/ids_movies.txt` ou `res/ids_movies_full.txt` permettant de se constituer une base de connaissance. Le nombre d'identifiants est extensible.
 
@@ -44,7 +45,7 @@ Détaillons son fonctionnement interne :
 
 9. Pour chaque film, récupération de ses critiques `tt0092067/reviews` puis extraction à l'aide de SpaCy des entités nommées de types `PERSON`.
 
-10. Calcul l'intersection entre les acteurs présents dans la fiche fiche de description et les acteurs cités dans les critiques. Nous récupérons ainsi les acteurs les plus controversés (positivement ou négativement). Ce sont ceux qui seront indispensables d'importer dans notre ontologie.
+10. Calcul l'intersection entre les acteurs présents dans la fiche de description et les acteurs cités dans les critiques. Nous récupérons ainsi les acteurs les plus controversés (positivement ou négativement). Ce sont ceux qui seront indispensables d'importer dans notre ontologie.
 
 ## Sorties (outputs)
 
@@ -65,6 +66,8 @@ Les sorties seront plus pertinentes avec un nombre de films et de critiques par 
 1. Pour la classification par sexe, nous pourrions utiliser des dictionnaires afin de distinguer le genre des acteurs et des producteurs. Néansmoins, il y aurait des ambigüités pour les prénoms mixtes.
 
 2. Pour chacun des films, il serait possible de déterminer si les entités nommées dans les critiques le sont positivement ou négativement.
+
+3. Pour chacun des commentaires, calculer le nombre d'occurrences des acteurs dans les critiques et pondérer le nombre d'apparitions avec l'importance qu'ils dans celui-ci.
 
 ## Étudiants
 
