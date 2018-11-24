@@ -67,8 +67,6 @@ Les sorties seront plus pertinentes avec un nombre de films et de critiques par 
 
 2. Pour chacun des films, il serait possible de déterminer si les entités nommées dans les critiques le sont positivement ou négativement.
 
-3. Pour chacun des commentaires, calculer le nombre d'occurrences des acteurs dans les critiques et pondérer le nombre d'apparitions avec l'importance qu'ils dans celui-ci.
-
 ## Étudiants
 
 * Loïc FAVRELIERE
